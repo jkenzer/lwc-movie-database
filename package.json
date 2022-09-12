@@ -6,14 +6,13 @@
   "type": "module",
   "scripts": {
     "clean": "rm -rf __lwr_cache__",
-    "dev": "lwr serve",
-    "start": "lwr serve --mode prod",
-    "start:compat": "lwr serve --mode compat",
-    "start:prod-compat": "lwr serve --mode prod-compat"
+    "dev": "npx rollup --config rollup.config.js -w",
+    "build": "npx rollup --config rollup.config.js"
   },
   "dependencies": {
     "dotenv": "^16.0.2",
-    "lwr": "0.7.4"
+    "lwr": "0.7.4",
+    "rollup-plugin-static-files": "^0.2.0"
   },
   "engines": {
     "node": ">=14.15.4 <19"

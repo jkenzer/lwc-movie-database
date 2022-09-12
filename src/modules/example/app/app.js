@@ -1,7 +1,7 @@
 import { LightningElement } from "lwc";
 
 export default class HelloWorldApp extends LightningElement {
-  api_key = "NEED API KEY";
+  api_key = "GET KEY";
   static renderMode = "light"; // the default is 'shadow'
   //
 
