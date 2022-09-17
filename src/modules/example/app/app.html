@@ -15,11 +15,11 @@
                     <h3>{movie.title}</h3>
                     <h4>{movie.releaseDate}</h4>
                 </hgroup>
-                <img src={movie.poster}>
+                <img if:true={movie.hasPoster} src={movie.poster}>
                 <footer>
                     <small>
-                        {movie.overview}<br /><br />
-                        {movie.vote_average}
+                        {movie.overview}
+                        <div if:true={movie.hasRatings}>{movie.vote_average}</div>
                     </small>
                 </footer>
             </article>

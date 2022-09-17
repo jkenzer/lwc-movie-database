@@ -1,7 +1,7 @@
 import { LightningElement } from "lwc";
 
 export default class HelloWorldApp extends LightningElement {
-  api_key = "API KEY HERE";
+  api_key = "YOUR_API_KEY";
   static renderMode = "light"; // the default is 'shadow'
 
   state = localStorage.getItem("state")
@@ -29,8 +29,12 @@ export default class HelloWorldApp extends LightningElement {
       const [year, month, day] = movie.release_date.split("-");
       return {
         ...movie,
-        releaseDate: new Date(year, month - 1, day).toLocaleDateString("en-US"),
+        releaseDate: movie.release_date
+          ? new Date(year, month - 1, day).toLocaleDateString("en-US")
+          : "N/A",
+        hasPoster: movie.poster_path ? true : false,
         poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+        hasRatings: movie.vote_average ? true : false,
       };
     });
     this.setState({
