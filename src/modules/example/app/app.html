@@ -3,7 +3,7 @@
         <article>
             <label for="search">
                 Search
-                <input onchange={setSearchTerm} class="searchbox" type="text" id="search" placeholder="Movie name...">
+                <input value={state.searchTerm} onchange={setSearchTerm} class="searchbox" type="text" id="search" placeholder="Movie name...">
             </label>
             <button onclick={searchMovie}>Search</button>
         </article>
@@ -11,13 +11,16 @@
     <div class="moviesContainer">
         <template for:each={state.results} for:item="movie">
             <article key={movie.id}>
-                <header>
-
-                    {movie.title}
-                </header>
+                <hgroup>
+                    <h3>{movie.title}</h3>
+                    <h4>{movie.releaseDate}</h4>
+                </hgroup>
                 <img src={movie.poster}>
                 <footer>
-                    ${movie.release_date}
+                    <small>
+                        {movie.overview}<br /><br />
+                        {movie.vote_average}
+                    </small>
                 </footer>
             </article>
         </template>

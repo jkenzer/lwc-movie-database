@@ -1,21 +1,21 @@
 import { LightningElement } from "lwc";
 
 export default class HelloWorldApp extends LightningElement {
-  api_key = "GET KEY";
+  api_key = "API KEY HERE";
   static renderMode = "light"; // the default is 'shadow'
-  //
 
-  state = {
-    searchTerm: "",
-    results: [],
-    favorites: [],
-  };
+  state = localStorage.getItem("state")
+    ? JSON.parse(localStorage.getItem("state"))
+    : { searchTerm: "", results: [], favorites: [] };
+
+  setState(newState) {
+    console.log(JSON.parse(localStorage.getItem("state")));
+    this.state = { ...this.state, ...newState };
+    localStorage.setItem("state", JSON.stringify(this.state));
+  }
 
   setSearchTerm(event) {
-    this.state = {
-      ...this.state,
-      searchTerm: event.currentTarget.value,
-    };
+    this.setState({ searchTerm: event.currentTarget.value });
   }
 
   async searchMovie(event) {
@@ -26,14 +26,15 @@ export default class HelloWorldApp extends LightningElement {
     );
     const results = await response.json();
     const modifiedResults = results.results.map((movie) => {
+      const [year, month, day] = movie.release_date.split("-");
       return {
         ...movie,
+        releaseDate: new Date(year, month - 1, day).toLocaleDateString("en-US"),
         poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
       };
     });
-    this.state = {
-      ...this.state,
+    this.setState({
       results: modifiedResults,
-    };
+    });
   }
 }
