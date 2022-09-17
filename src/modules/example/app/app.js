@@ -1,7 +1,6 @@
 import { LightningElement } from "lwc";
 
 export default class HelloWorldApp extends LightningElement {
-  api_key = "YOUR_API_KEY";
   static renderMode = "light"; // the default is 'shadow'
 
   state = localStorage.getItem("state")
@@ -9,7 +8,6 @@ export default class HelloWorldApp extends LightningElement {
     : { searchTerm: "", results: [], favorites: [] };
 
   setState(newState) {
-    console.log(JSON.parse(localStorage.getItem("state")));
     this.state = { ...this.state, ...newState };
     localStorage.setItem("state", JSON.stringify(this.state));
   }
@@ -21,11 +19,9 @@ export default class HelloWorldApp extends LightningElement {
   async searchMovie(event) {
     const searchTerm = this.state.searchTerm;
     if (!searchTerm) return;
-    const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${this.api_key}&query=${searchTerm}`
-    );
+    const response = await fetch(`/api/index.js?query=${searchTerm}`);
     const results = await response.json();
-    const modifiedResults = results.results.map((movie) => {
+    const modifiedResults = results.data.results.map((movie) => {
       const [year, month, day] = movie.release_date.split("-");
       return {
         ...movie,

@@ -6,12 +6,12 @@
   "type": "module",
   "scripts": {
     "clean": "rm -rf __lwr_cache__",
-    "dev": "npx rollup --config rollup.config.js -w",
     "build": "npx rollup --config rollup.config.js"
   },
   "dependencies": {
     "dotenv": "^16.0.2",
     "lwr": "0.7.4",
+    "node-fetch": "^3.2.10",
     "rollup-plugin-static-files": "^0.2.0"
   },
   "engines": {

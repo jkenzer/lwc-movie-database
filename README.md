@@ -22,3 +22,9 @@ $ npm install --save-dev lwc rollup @lwc/rollup-plugin @rollup/plugin-replace
 Make sure to also add the rollup.config.js, lwc.config.json and src/main.js file.
 
 After the rollup build, I included the main.js from the dist folder into the index.html page I manually created in that folder.
+
+## Deploy
+
+This project is setup to be deployed to vercel. It uses a serverless function in the /api directory. [Check the vercel docs for more info](https://vercel.com/docs/concepts/functions/serverless-functions).
+
+You will also need an api key from The Movie Database. Move the sample.env file to .env and add your key there.
