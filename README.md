@@ -1,5 +1,7 @@
 # LWC Movie Database Client
 
+You can view this deployed at [https://lwc-movie-database.vercel.app](https://lwc-movie-database.vercel.app).
+
 Inspired by the Coding Train. Taking [his vanilla version](https://github.com/CodingGarden/intro-to-state) and using [LWC Open Source](https://lwc.dev) to replicate it.
 
 All movie info sourced from [The Movie Database](https://www.themoviedb.org).
